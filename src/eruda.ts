@@ -1,6 +1,6 @@
-import * as eruda from "eruda";
-import * as erudaCode from "eruda-code";
-import * as erudaDom from "eruda-dom";
+import eruda from "eruda";
+const erudaCode = require("eruda-code");
+const erudaDom = require("eruda-dom");
 
 eruda.init();
 eruda.add(erudaCode);

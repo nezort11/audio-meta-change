@@ -1,6 +1,8 @@
 import eruda from "eruda";
-const erudaCode = require("eruda-code");
-const erudaDom = require("eruda-dom");
+// @ts-expect-error no types
+import erudaCode from "eruda-code";
+// @ts-expect-error no types
+import erudaDom from "eruda-dom";
 
 eruda.init();
 eruda.add(erudaCode);

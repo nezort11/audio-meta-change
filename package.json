@@ -6,7 +6,7 @@
   "scripts": {
     "tunnel": "ngrok http 3003",
     "proxy": "tvkit serve --port 3004 --browser 'ie 11' http://localhost:3003",
-    "dev": "HTTPS=true vite --port 3003",
+    "dev": "vite --port 3003",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
@@ -25,6 +25,7 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-basic-ssl": "1.0.1",
+    "@vitejs/plugin-legacy": "4.0.1",
     "@vitejs/plugin-react": "^3.1.0",
     "sass": "1.59.2",
     "telegram-webapps-types": "1.0.5",

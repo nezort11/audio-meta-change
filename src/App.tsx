@@ -1,7 +1,7 @@
 import { css } from "@emotion/css";
 import { Global, css as reactCss } from "@emotion/react";
 import { SVGProps, useCallback, useEffect, useMemo, useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { ChangeEvent } from "react";
 import {
   FileError,
@@ -11,6 +11,7 @@ import {
 } from "react-dropzone";
 
 import "./LoadingSpinner.scss";
+import axiosRetry from "axios-retry";
 
 const MusicNoteIcon = (svgProps: SVGProps<SVGSVGElement>) => {
   return (
@@ -132,6 +133,11 @@ const validateTelegramThumbnail = async (file: File) => {
 
   return null;
 };
+
+axiosRetry(axios, {
+  retries: 3,
+  retryCondition: (error) => error.response?.status === 511,
+});
 
 // Telegram WebApp is old Safari webview (~IE11)
 function App() {
@@ -264,6 +270,9 @@ function App() {
         },
         {
           timeout: 900_000, // 15 min
+          headers: {
+            "Bypass-Tunnel-Reminder": true,
+          },
         }
       );
       // console.log(response.data);

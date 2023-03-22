@@ -149,10 +149,14 @@ function App() {
     () => new URLSearchParams(window.location.search),
     [window.location.search]
   );
-  const defaultDuration = useMemo(() => {
-    const duration = +(urlParams.get("duration") || 0) || 0;
-    return getDurationFromSeconds(duration);
-  }, [urlParams]);
+  const defaultDurationSeconds = useMemo(
+    () => +(urlParams.get("duration") || 0) || 0,
+    [urlParams]
+  );
+  const defaultDuration = useMemo(
+    () => getDurationFromSeconds(defaultDurationSeconds),
+    [defaultDurationSeconds]
+  );
   const defaultTitle = useMemo(() => urlParams.get("title") || "", [urlParams]);
   const defaultArtist = useMemo(
     () => urlParams.get("artist") || "",
@@ -267,6 +271,7 @@ function App() {
           artist,
           thumbnail: thumbnail ? await getBase64(thumbnail) : "",
           thumbnailFileId: thumbnail ? "" : defaultThumbnailFileId,
+          duration: defaultDurationSeconds,
         },
         {
           timeout: 900_000, // 15 min
@@ -281,7 +286,7 @@ function App() {
       console.error(error);
     }
     setIsSubmitting(false);
-  }, [title, artist, thumbnail, telegramWebapp]);
+  }, [title, artist, thumbnail, telegramWebapp, defaultDurationSeconds]);
 
   const {
     getRootProps,

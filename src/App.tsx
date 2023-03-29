@@ -274,7 +274,7 @@ function App() {
           duration: defaultDurationSeconds,
         },
         {
-          timeout: 900_000, // 15 min
+          timeout: 15 * 60 * 1000, // 15 min
           headers: {
             "Bypass-Tunnel-Reminder": true,
           },

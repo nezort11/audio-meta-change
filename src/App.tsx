@@ -267,8 +267,8 @@ function App() {
         {
           chatId: urlParams.get("chatId"),
           fileId: urlParams.get("fileId"),
-          titleValue,
-          artistValue,
+          title: titleValue,
+          artist: artistValue,
           thumbnail: thumbnail ? await getBase64(thumbnail) : "",
           thumbnailFileId: thumbnail ? "" : defaultThumbnailFileId,
           duration: defaultDurationSeconds,
@@ -286,7 +286,13 @@ function App() {
       console.error(error);
     }
     setIsSubmitting(false);
-  }, [title, artist, thumbnail, telegramWebapp, defaultDurationSeconds]);
+  }, [
+    titleValue,
+    artistValue,
+    thumbnail,
+    telegramWebapp,
+    defaultDurationSeconds,
+  ]);
 
   const {
     getRootProps,

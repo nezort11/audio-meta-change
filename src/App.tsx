@@ -267,8 +267,8 @@ function App() {
         {
           chatId: urlParams.get("chatId"),
           fileId: urlParams.get("fileId"),
-          title,
-          artist,
+          titleValue,
+          artistValue,
           thumbnail: thumbnail ? await getBase64(thumbnail) : "",
           thumbnailFileId: thumbnail ? "" : defaultThumbnailFileId,
           duration: defaultDurationSeconds,
